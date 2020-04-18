@@ -92,12 +92,3 @@ class Questionnaire:
 		soup = BeautifulSoup(r.content, 'html.parser', parse_only=SoupStrainer('div', class_='freebirdFormviewerViewNumberedItemContainer'))
 		questions = [Question.from_soup(i) for i in soup.find_all('div', {'class': 'freebirdFormviewerViewNumberedItemContainer'})]
 		return cls(questions, url=url)
-
-
-if __name__ == '__main__':
-	form_url = 'https://docs.google.com/forms/d/1X8zi7093zRMjV3gGpuew1RKo14pd8Su2qlQsWyOplis/viewform?edit_requested=true'
-	quest = Questionnaire.from_url(form_url)
-	for q in quest.questions:
-		print(q)
-		for c in q.categories:
-			print(f'\t{c.code}: {c.label}')
