@@ -1,0 +1,6 @@
+credentials.json
+token.pickle
+output/*
+tst
+.idea
+venv
